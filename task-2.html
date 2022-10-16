@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/babel-standalone/babel.min.js"
+    ></script>
+    <style>
+      a {
+        color: inherit;
+        text-decoration: inherit;
+      }
+
+      #app {
+        display: grid;
+        width: 100%;
+        height: 100vh;
+        grid-template-areas:
+          "header header"
+          "main sidebar"
+          "footer footer";
+        grid-template-rows: 0.3fr 1fr 0.3fr;
+        grid-template-columns: 1fr 0.3fr;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 44px;
+      }
+
+      #app > * {
+        display: flex;
+        padding: 10px 15px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      header {
+        grid-area: header;
+        background-color: #8ca0ff;
+        color: #fff;
+      }
+
+      #app > main {
+        display: block;
+        grid-area: main;
+        background-color: #ffff64;
+        color: #6464ff;
+      }
+
+      main img {
+        float: left;
+        width: 35%;
+      }
+
+      nav {
+        grid-area: sidebar;
+        background-color: #ffa08c;
+        color: #fff;
+        text-decoration: none;
+        text-align: left;
+      }
+
+      footer {
+        grid-area: footer;
+        background-color: #8cffa0;
+        color: #a08cff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      class Header extends React.Component {
+        render() {
+          return <header>{this.props.title}</header>;
+        }
+      }
+
+      class Main extends React.Component {
+        render() {
+          return (
+            <main>
+              <h1>{this.props.title}</h1>
+              <img src={this.props.src} />
+              <p>{this.props.text}</p>
+            </main>
+          );
+        }
+      }
+
+      class Sidebar extends React.Component {
+        render() {
+          return (
+            <nav>
+              <ul>
+                <li>
+                  <a href="#">{this.props.anchor1}</a>
+                </li>
+                <li>
+                  <a href="#">{this.props.anchor2}</a>
+                </li>
+                <li>
+                  <a href="#">{this.props.anchor3}</a>
+                </li>
+              </ul>
+            </nav>
+          );
+        }
+      }
+
+      class Footer extends React.Component {
+        render() {
+          return <footer>{this.props.title}</footer>;
+        }
+      }
+
+      const app = (
+        <React.Fragment>
+          <Header title="Header" />
+          <Sidebar
+            title="Sidebar"
+            anchor1="Catalog"
+            anchor2="Contacts"
+            anchor3="About"
+          />
+          <Main
+            title="Main"
+            text="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio, obcaecati!"
+            src="https://assets.justinmind.com/wp-content/uploads/2018/11/Lorem-Ipsum-alternatives-768x492.png"
+          />
+          <Footer title="Footer" />
+        </React.Fragment>
+      );
+
+      const container = document.getElementById("app");
+      ReactDOM.createRoot(container).render(app);
+    </script>
+  </body>
+</html>
